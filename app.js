@@ -56,7 +56,6 @@ app.get("/",function(req,res){
         }
         else{
             res.render("index",{ListTitle:"Today",newListItem:items});
-            console.log("yo bitch!");
         } 
 });    
         
@@ -72,11 +71,9 @@ app.get("/:topic",function(req,res){
                     items:defaultItems
                 });
                 newList.save();
-                console.log("yo bitch2!");
                 res.redirect("/" + newListName);
             }
             else{
-                console.log("yo bitch3!");
                 res.render("index",{ListTitle:newListName,newListItem:list.items});
             }   
         }
@@ -93,7 +90,6 @@ app.post("/",function(req,res){
 
     if(listName==="Today"){
         newItem.save();
-        console.log("yo bitch4!");
         res.redirect("/");
     }
     else
@@ -101,7 +97,6 @@ app.post("/",function(req,res){
         List.findOne({name:listName},function(err,findList){
             findList.items.push(newItem);
             findList.save();
-            console.log("yo bitch5!");
             res.redirect("/" + listName);
         });
     }
