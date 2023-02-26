@@ -1,0 +1,9 @@
+# todolist
+
+Dependencies: {
+    "body-parser": "^1.20.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.8.2"
+  }
