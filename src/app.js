@@ -4,6 +4,8 @@ const bodyParser= require("body-parser");
 const mongoose=require('mongoose');
 const _ = require("lodash");
 
+const DB='mongodb+srv://itsadityasharma7124:Jaishreeram123@cluster0.rgyn6el.mongodb.net/toDoList?retryWrites=true&w=majority'
+
 const app=express();
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -12,8 +14,22 @@ app.set('view engine','ejs');
 app.use(express.static('public'))
 
 mongoose.set('strictQuery',false);
-mongoose.connect("mongodb://127.0.0.1:27017/toDoList");
-
+// mongoose.connect(DB,{
+    // useNewUrlPaser:true,
+    // userCreateIndex:true,
+    // userUnifiedTopology:true,
+    // userFindAndModify:false
+// }).then(()=>{
+//     console.log("connected successfully");
+// }).catch((err)=>console.log(err));
+mongoose.connect(DB,function(err){
+    if(!err){
+        console.log("succcessfully connected");
+    }
+    else{
+        console.log(err);
+    }
+})
 const toDoListSchema=new mongoose.Schema({
     data:String
 });
