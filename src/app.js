@@ -1,17 +1,19 @@
+require('dotenv').config();
 const express=require("express");
 const bodyParser= require("body-parser");
 
 const mongoose=require('mongoose');
 const _ = require("lodash");
 
-const DB='mongodb+srv://itsadityasharma7124:Jaishreeram123@cluster0.rgyn6el.mongodb.net/toDoList?retryWrites=true&w=majority'
+dbPass=process.env.DB_PASSWORD;
+const DB='mongodb+srv://itsadityasharma7124:'+dbPass+'@cluster0.rgyn6el.mongodb.net/toDoList?retryWrites=true&w=majority'
 
 const app=express();
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.set('view engine','ejs');
 
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 mongoose.set('strictQuery',false);
 // mongoose.connect(DB,{
@@ -29,7 +31,7 @@ mongoose.connect(DB,function(err){
     else{
         console.log(err);
     }
-})
+});
 const toDoListSchema=new mongoose.Schema({
     data:String
 });
